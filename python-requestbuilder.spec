@@ -7,7 +7,7 @@
 Summary:	Command line-driven HTTP request builder
 Name:		python-%{module}
 Version:	0.2.3
-Release:	0.1
+Release:	1
 License:	ISC
 Group:		Libraries/Python
 Source0:	https://pypi.python.org/packages/source/r/requestbuilder/%{module}-%{version}.tar.gz
