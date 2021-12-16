@@ -14,14 +14,14 @@ Source0:	https://pypi.python.org/packages/source/r/requestbuilder/%{module}-%{ve
 # Source0-md5:	3d9793e3a3b3dad23a8475e0480581db
 URL:		https://github.com/boto/requestbuilder
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.710
+BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
 BuildRequires:	python-modules
-BuildRequires:	python-setuptools > 7.0
+BuildRequires:	python-setuptools > 1:7.0
 %endif
 %if %{with python3}
 BuildRequires:	python3-modules
-BuildRequires:	python3-setuptools > 7.0
+BuildRequires:	python3-setuptools > 1:7.0
 %endif
 Requires:	python-requests
 Requires:	python-six
