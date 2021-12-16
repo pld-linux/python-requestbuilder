@@ -5,6 +5,7 @@
 
 %define 	module	requestbuilder
 Summary:	Command line-driven HTTP request builder
+Summary(pl.UTF-8):	Budowanie żądań HTTP w oparciu o linię poleceń
 Name:		python-%{module}
 Version:	0.2.3
 Release:	7
@@ -16,14 +17,14 @@ URL:		https://github.com/boto/requestbuilder
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
-BuildRequires:	python-modules
+BuildRequires:	python-modules >= 1:2.6
 BuildRequires:	python-setuptools > 1:7.0
 %endif
 %if %{with python3}
-BuildRequires:	python3-modules
+BuildRequires:	python3-modules >= 1:3.2
 BuildRequires:	python3-setuptools > 1:7.0
 %endif
-Requires:	python-requests
+Requires:	python-requests >= 1
 Requires:	python-six
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -31,51 +32,32 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Command line-driven HTTP request builder.
 
+%description -l pl.UTF-8
+Budowanie żądań HTTP w oparciu o linię poleceń.
+
 %package -n python3-%{module}
-Summary:	-
-Summary(pl.UTF-8):	-
+Summary:	Command line-driven HTTP request builder
+Summary(pl.UTF-8):	Budowanie żądań HTTP w oparciu o linię poleceń
 Group:		Libraries/Python
-Requires:	python-requests
+Requires:	python-requests >= 1
 Requires:	python-six
 
 %description -n python3-%{module}
 Command line-driven HTTP request builder.
 
 %description -n python3-%{module} -l pl.UTF-8
-
-%package apidocs
-Summary:	%{module} API documentation
-Summary(pl.UTF-8):	Dokumentacja API %{module}
-Group:		Documentation
-
-%description apidocs
-API documentation for %{module}.
-
-%description apidocs -l pl.UTF-8
-Dokumentacja API %{module}.
+Budowanie żądań HTTP w oparciu o linię poleceń.
 
 %prep
 %setup -q -n %{module}-%{version}
 
 %build
 %if %{with python2}
-# CC/CFLAGS is only for arch packages - remove on noarch packages
-CC="%{__cc}" \
-CFLAGS="%{rpmcppflags} %{rpmcflags}" \
-%py_build %{?with_tests:test}
+%py_build
 %endif
 
 %if %{with python3}
-# CC/CFLAGS is only for arch packages - remove on noarch packages
-CC="%{__cc}" \
-CFLAGS="%{rpmcppflags} %{rpmcflags}" \
-%py3_build %{?with_tests:test}
-%endif
-
-%if %{with doc}
-cd docs
-%{__make} -j1 html
-rm -rf _build/html/_sources
+%py3_build
 %endif
 
 %install
@@ -98,9 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %{py_sitescriptdir}/%{module}
-%if "%{py_ver}" > "2.4"
 %{py_sitescriptdir}/%{module}-%{version}-py*.egg-info
-%endif
 %endif
 
 %if %{with python3}
