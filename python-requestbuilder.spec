@@ -8,7 +8,7 @@ Summary:	Command line-driven HTTP request builder
 Summary(pl.UTF-8):	Budowanie żądań HTTP w oparciu o linię poleceń
 Name:		python-%{module}
 Version:	0.2.3
-Release:	7
+Release:	8
 License:	ISC
 Group:		Libraries/Python
 Source0:	https://pypi.python.org/packages/source/r/requestbuilder/%{module}-%{version}.tar.gz
